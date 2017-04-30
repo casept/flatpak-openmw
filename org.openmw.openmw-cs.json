@@ -1,0 +1,67 @@
+{
+  "app-id": "org.openmw.openmw-cs",
+  "version": "0.41.0",
+  "runtime": "org.freedesktop.Platform",
+  "runtime-version": "1.4",
+  "sdk": "org.freedesktop.Sdk",
+  "command": "openmw-cs",
+  "rename-icon": "openmw-cs",
+  "rename-desktop-file": "openmw-cs.desktop",
+  "rename-appdata-file": "openmw.appdata.xml",
+  "finish-args": [
+      /* X11 access */
+      "--socket=x11", "--share=ipc",
+      /* OpenGL access */
+      "--device=dri",
+      /* PulseAudio access */
+      "--socket=pulseaudio",
+      /* Network access */
+      "--share=network",
+      /* Wayland access */
+      "--socket=wayland",
+      /* Needed to make the installer work */
+      "--filesystem=home"
+  ],
+
+  "modules": [
+	  "modules/icu4c-55.1.json",
+	  "modules/qt-4.8.7.json",
+	  "modules/fribidi-0.19.7.json",
+	  "modules/libass-0.13.6.json",
+	  "modules/libmp3lame-3.99.5.json",
+	  "modules/libopus-1.1.4.json",
+          "modules/x264-20170416-stable.json",
+          "modules/x265-2.3.json",
+	  "modules/ffmpeg-3.2.4.json",
+	  "modules/unshield-1.4.2.json",
+	  "modules/openscenegraph-3.4.0.json",
+          "modules/glu-9.0.0.json",
+          "modules/openal-1.17.2.json",
+	  "modules/mygui-3.2.2.json",
+	  "modules/bullet-2.86.json",
+	  "modules/boost-1.64.0.json",
+	  {
+          "name": "openmw",
+	  "buildsystem": "cmake",
+	  "post-install": [
+	    /* Move icons to where flatpak expects them */
+	    "mkdir -p /app/share/icons/hicolor/256x256/apps/",
+	    "mv /app/share/pixmaps/openmw-cs.png /app/share/icons/hicolor/256x256/apps/openmw-cs.png"
+	  ],
+          "sources" : [
+              {
+                  "type": "archive",
+                  "url": "https://github.com/OpenMW/openmw/archive/openmw-0.41.0.tar.gz",
+		  "sha256": "a3e1c7d060dc461b9b63ceb5d9ec56b90c1bdcbfd37f0c7c7310c38ec7e3e21d"
+              }
+          ],
+	  "cleanup": [
+            "/lib/debug",
+            "/include",
+            "/lib/*.a",
+            "/lib/*.la",
+            "/lib/pkgconfig"
+	  ]
+      }
+  ]
+}
