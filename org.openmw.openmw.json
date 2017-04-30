@@ -1,6 +1,7 @@
 {
   "app-id": "org.openmw.openmw",
   "version": "0.41.0",
+  "branch": "stable",
   "runtime": "org.freedesktop.Platform",
   "runtime-version": "1.4",
   "sdk": "org.freedesktop.Sdk",
