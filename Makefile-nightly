@@ -1,10 +1,10 @@
 all:
 	rm -rf openmw
-	flatpak-builder --repo=repo --ccache openmw nightly-org.openmw.openmw.json 
-	flatpak build-bundle repo openmw-nightly.flatpak org.openmw.openmw nightly
+	flatpak-builder --repo=repo --ccache openmw org.openmw.openmwNightly.json 
+	flatpak build-bundle repo openmw-nightly.flatpak org.openmw.openmwNightly nightly
 clean:
 	rm -rf build repo openmw *.flatpak .flatpak-builder
 install:
 	flatpak install --user --bundle openmw-nightly.flatpak
 uninstall:
-	flatpak uninstall --user org.openmw.openmw
+	flatpak uninstall --user org.openmw.openmwNightly

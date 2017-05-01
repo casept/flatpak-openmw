@@ -1,5 +1,5 @@
 {
-  "app-id": "org.openmw.openmw",
+  "app-id": "org.openmw.openmwNightly",
   "branch": "nightly",
   "runtime": "org.freedesktop.Platform",
   "runtime-version": "1.4",
