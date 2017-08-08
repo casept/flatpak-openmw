@@ -2,7 +2,7 @@
   "app-id": "org.openmw.openmwNightly",
   "branch": "nightly",
   "runtime": "org.freedesktop.Platform",
-  "runtime-version": "1.4",
+  "runtime-version": "1.6",
   "sdk": "org.freedesktop.Sdk",
   "command": "openmw",
   "rename-icon": "openmw",
@@ -33,7 +33,7 @@
 	  "modules/libopus-1.1.4.json",
           "modules/x264-20170416-stable.json",
           "modules/x265-2.3.json",
-	  "modules/ffmpeg-3.2.4.json",
+	  "modules/ffmpeg-3.3.1.json",
 	  "modules/unshield-1.4.2.json",
 	  "modules/openscenegraph-3.4.0.json",
           "modules/glu-9.0.0.json",
@@ -47,7 +47,14 @@
 	  "post-install": [
 	    /* Move icons to where flatpak expects them */
 	    "mkdir -p /app/share/icons/hicolor/256x256/apps/",
-	    "mv /app/share/pixmaps/openmw.png /app/share/icons/hicolor/256x256/apps/openmw.png"
+	    "mv /app/share/pixmaps/openmw.png /app/share/icons/hicolor/256x256/apps/openmw.png",
+	    "mkdir -p /app/share/icons/hicolor/256x256/apps/",
+	    "mv /app/share/pixmaps/openmw-cs.png /app/share/icons/hicolor/256x256/apps/org.openmw.openmw.CreationSet.Nightly.png",
+	    /* Move the .desktop file for the creation set (hopefully temporary workaround, see flatpak issue 750) */
+	    "mv /app/share/applications/openmw-cs.desktop /app/share/applications/org.openmw.openmw.CreationSet.Nightly.desktop",
+	    "sed -i -e 's/Icon=openmw-cs/Icon=org.openmw.openmw.CreationSet.Nightly/g' /app/share/applications/org.openmw.openmw.CreationSet.Nightly.desktop",
+	    "sed -i -e 's/Name=OpenMW Content Editor/Name=(nightly) OpenMW Content Editor/g' /app/share/applications/org.openmw.openmw.CreationSet.Nightly.desktop"
+
 	  ],
           "sources" : [
               {
